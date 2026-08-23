@@ -1,0 +1,18 @@
+.formContainer {
+  display: grid;
+  gap: 1rem;
+}
+
+.formBody {
+  display: grid;
+  gap: 1rem;
+}
+
+.formItem {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.submitButton {
+  justify-self: end;
+}

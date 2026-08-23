@@ -1,0 +1,11 @@
+.topBar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.topBarItem {
+  text-decoration: none;
+  padding: 0 1rem;
+}
