@@ -1,4 +1,4 @@
-import styles from "../styles/authForm.module.css";
+import styles from "../css/authForm.module.css";
 
 export default function SignUp() {
   const url = "http://localhost:3000/users";

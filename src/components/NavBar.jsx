@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import styles from "../styles/topBar.module.css";
+import styles from "../css/topBar.module.css";
 
 export default function NavBar({ session, setSession }) {
   const topbarTitles =

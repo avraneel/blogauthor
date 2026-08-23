@@ -1,5 +1,5 @@
 import { useNavigate, useOutletContext } from "react-router";
-import styles from "../styles/authForm.module.css";
+import styles from "../css/authForm.module.css";
 
 export default function Login() {
   const [session, setSession] = useOutletContext();

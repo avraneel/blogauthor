@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router";
-import Topbar from "./Topbar";
-import styles from "../styles/content.module.css";
+import Topbar from "./NavBar";
+import styles from "../css/content.module.css";
 
 export default function App() {
   const [session, setSession] = useState(
