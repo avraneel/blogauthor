@@ -5,7 +5,7 @@ export default function Create() {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", localStorage.getItem("token"));
-    console.log(formData);
+    console.log(typeof formData);
     const request = {
       method: "POST",
       headers: myHeaders,
