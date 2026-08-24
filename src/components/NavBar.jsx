@@ -11,6 +11,7 @@ export default function NavBar({ session, setSession }) {
         ]
       : [
           { text: "Home", url: "/" },
+          { text: "Create", url: "create" },
           { text: session.fullname, url: `/users/${session.id}` },
           { text: "Log Out", url: "/" },
         ];
