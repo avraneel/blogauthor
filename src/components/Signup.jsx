@@ -1,6 +1,31 @@
+import { useNavigate } from "react-router";
 import styles from "../css/authForm.module.css";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
+  async function handleSubmit(formData) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", localStorage.getItem("token"));
+
+    const request = {
+      method: "POST",
+      headers: myHeaders,
+      body: JSON.stringify({
+        fullname: formData.get("fullname"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+      }),
+    };
+
+    const response = await fetch("http://localhost:3000/users", request);
+    if (response.ok) {
+      console.log("i am here");
+      navigate("/");
+    }
+  }
+
   const url = "http://localhost:3000/users";
   return (
     <main className={styles.formContainer}>
