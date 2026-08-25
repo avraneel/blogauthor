@@ -22,7 +22,7 @@ export default function SignUp() {
     const response = await fetch("http://localhost:3000/users", request);
     if (response.ok) {
       console.log("i am here");
-      navigate("/");
+      navigate("/login");
     }
   }
 
@@ -30,7 +30,7 @@ export default function SignUp() {
   return (
     <main className={styles.formContainer}>
       <h2>Sign Up</h2>
-      <form action={url} method="post" className={styles.formBody}>
+      <form action={handleSubmit} method="post" className={styles.formBody}>
         <div className={styles.formItem}>
           <label htmlFor="fullname">Full Name *</label>
           <input type="text" name="fullname" id="fullname" required />

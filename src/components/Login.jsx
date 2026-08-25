@@ -50,5 +50,5 @@ async function handleSubmit(formData, setSession, navigate) {
   localStorage.setItem("token", `Bearer ${jwt.token}`);
   localStorage.setItem("session", JSON.stringify(jwt.user));
   // redirect
-  navigate(`/users/${jwt.user.id}`);
+  navigate("/");
 }
