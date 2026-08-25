@@ -21,7 +21,6 @@ export default function SignUp() {
 
     const response = await fetch("http://localhost:3000/users", request);
     if (response.ok) {
-      console.log("i am here");
       navigate("/login");
     }
   }

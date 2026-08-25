@@ -7,7 +7,6 @@ export default function App() {
   const [session, setSession] = useState(
     () => JSON.parse(localStorage.getItem("session")) || null,
   );
-  console.log(session);
   return (
     <>
       <div className={styles.content}>
