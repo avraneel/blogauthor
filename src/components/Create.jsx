@@ -1,6 +1,8 @@
 import styles from "../css/authForm.module.css";
+import { useNavigate } from "react-router";
 
 export default function Create() {
+  const navigate = useNavigate();
   async function handleSubmit(formData) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -17,6 +19,7 @@ export default function Create() {
 
     const response = await fetch("http://localhost:3000/posts", request);
     const data = await response.json();
+    navigate("/");
   }
 
   return (
