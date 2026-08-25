@@ -1,16 +1,18 @@
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export default function PostList() {
+  const navigate = useNavigate();
   const [postTitles, setPostTitles] = useState([]);
+
+  async function getData() {
+    const response = await fetch("http://localhost:3000/posts");
+    const data = await response.json();
+
+    setPostTitles(data);
+  }
   useEffect(() => {
-    async function getData() {
-      const response = await fetch("http://localhost:3000/posts");
-      const data = await response.json();
-
-      setPostTitles(data);
-    }
-
     getData();
   }, []);
 
@@ -25,12 +27,12 @@ export default function PostList() {
         published: formData.get("published"),
       }),
     };
-
     const response = await fetch(
       `http://localhost:3000/posts/${postId}`,
       request,
     );
     const data = await response.json();
+    getData();
   }
 
   const listElements = postTitles.map((post) => (
