@@ -21,7 +21,7 @@ export default function PostList() {
       const data = await response.json();
       setPostTitles(data);
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
     }
   }
 
@@ -65,19 +65,24 @@ export default function PostList() {
   }
 
   async function handleDelete(formData) {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", localStorage.getItem("token"));
-    const request = {
-      method: "DELETE",
-      headers: myHeaders,
-    };
-    const response = await fetch(
-      `http://localhost:3000/posts/${formData.get("delete")}`,
-      request,
-    );
-    await response.json();
-    getData();
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", localStorage.getItem("token"));
+      const request = {
+        method: "DELETE",
+        headers: myHeaders,
+      };
+      const response = await fetch(
+        `http://localhost:3000/posts/${formData.get("delete")}`,
+        request,
+      );
+      const data = await response.json();
+      console.log(data);
+      getData();
+    } catch (err) {
+      console.log(err.message);
+    }
   }
 
   const listElements = postTitles.map((post) => (
@@ -95,7 +100,7 @@ export default function PostList() {
           </form>
           <form action={handleDelete}>
             <input type="hidden" name="delete" value={post.id} />
-            <button>Delete</button>
+            <button>Delete Post</button>
           </form>
         </div>
       )}
