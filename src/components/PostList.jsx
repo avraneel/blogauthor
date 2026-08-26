@@ -8,13 +8,41 @@ export default function PostList() {
   const [postTitles, setPostTitles] = useState([]);
 
   async function getData() {
-    const response = await fetch("http://localhost:3000/posts?published=true");
-    const data = await response.json();
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      myHeaders.append("Authorization", localStorage.getItem("token"));
 
-    setPostTitles(data);
+      const request = {
+        method: "GET",
+        headers: myHeaders,
+      };
+      const response = await fetch("http://localhost:3000/posts", request);
+      const data = await response.json();
+      setPostTitles(data);
+    } catch (err) {
+      console.error(err.message);
+    }
   }
+
+  async function getPublicData() {
+    try {
+      const response = await fetch(
+        "http://localhost:3000/posts?published=true",
+      );
+      const data = await response.json();
+      setPostTitles(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
+
   useEffect(() => {
-    getData();
+    if (session) {
+      getData();
+    } else {
+      getPublicData();
+    }
   }, []);
 
   async function handleSubmit(postId, formData) {
@@ -36,7 +64,7 @@ export default function PostList() {
     getData();
   }
 
-  async function handleDelete() {
+  async function handleDelete(formData) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", localStorage.getItem("token"));
@@ -45,7 +73,7 @@ export default function PostList() {
       headers: myHeaders,
     };
     const response = await fetch(
-      `http://localhost:3000/posts/${postId}`,
+      `http://localhost:3000/posts/${formData.get("delete")}`,
       request,
     );
     await response.json();

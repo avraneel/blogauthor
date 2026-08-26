@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useOutletContext, useParams } from "react-router";
+import { CommentSection } from "./CommentSection";
 
 export default function Post() {
   const [session, setSession] = useOutletContext();
@@ -18,6 +19,7 @@ export default function Post() {
     <article className="post">
       <h2>{post.title}</h2>
       <p>{post.content}</p>
+      <CommentSection postId={postId} session={session} />
     </article>
   );
 }
