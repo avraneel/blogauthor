@@ -20,17 +20,16 @@ export default function SignUp() {
       }),
     };
 
-    const response = await fetch(`${url}/users`, request);
+    const response = await fetch(`${backurl}/users`, request);
     if (response.ok) {
       navigate("/login");
     }
   }
 
-  const url = `${backurl}/users`;
   return (
     <main className={styles.formContainer}>
       <h2>Sign Up</h2>
-      <form action={handleSubmit} method="post" className={styles.formBody}>
+      <form action={handleSubmit} className={styles.formBody}>
         <div className={styles.formItem}>
           <label htmlFor="fullname">Full Name *</label>
           <input type="text" name="fullname" id="fullname" required />

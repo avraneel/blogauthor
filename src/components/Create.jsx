@@ -20,7 +20,8 @@ export default function Create() {
       }),
     };
 
-    const response = await fetch(`${url}`, request);
+    const response = await fetch(`${url}/posts`, request);
+    console.log(response);
     const data = await response.json();
     navigate("/");
   }
