@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../css/authForm.module.css";
 import { useNavigate } from "react-router";
+import url from "../url";
 
 export default function Create() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Create() {
       }),
     };
 
-    const response = await fetch("http://localhost:3000/posts", request);
+    const response = await fetch(`${url}`, request);
     const data = await response.json();
     navigate("/");
   }

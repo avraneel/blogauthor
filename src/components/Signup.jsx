@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import styles from "../css/authForm.module.css";
+import backurl from "../url";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -19,13 +20,13 @@ export default function SignUp() {
       }),
     };
 
-    const response = await fetch("http://localhost:3000/users", request);
+    const response = await fetch(`${url}/users`, request);
     if (response.ok) {
       navigate("/login");
     }
   }
 
-  const url = "http://localhost:3000/users";
+  const url = `${backurl}/users`;
   return (
     <main className={styles.formContainer}>
       <h2>Sign Up</h2>

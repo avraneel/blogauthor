@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "../css/authForm.module.css";
 import { useNavigate, useParams } from "react-router";
+import url from "../url";
 
 export default function Edit() {
   const [title, setTitle] = useState("");
@@ -22,23 +23,21 @@ export default function Edit() {
       }),
     };
 
-    const response = await fetch(
-      `http://localhost:3000/posts/${postId}`,
-      request,
-    );
+    const response = await fetch(`${url}/posts/${postId}`, request);
     const data = await response.json();
     navigate("/");
   }
 
   useEffect(() => {
     async function getPosts(postId) {
-      const response = await fetch(`http://localhost:3000/posts/${postId}`);
+      const response = await fetch(`${url}/posts/${postId}`);
       const data = await response.json();
       setTitle(data.title);
       setContent(data.content);
     }
     getPosts(postId);
   }, []);
+
   return (
     <div className={styles.formContainer}>
       <h2>Edit Post</h2>

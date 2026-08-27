@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router";
+import url from "../url";
 
 export default function PostList() {
   const [session, setSession] = useOutletContext();
@@ -17,7 +18,7 @@ export default function PostList() {
         method: "GET",
         headers: myHeaders,
       };
-      const response = await fetch("http://localhost:3000/posts", request);
+      const response = await fetch(`${url}/posts`, request);
       const data = await response.json();
       setPostTitles(data);
     } catch (err) {
@@ -27,9 +28,7 @@ export default function PostList() {
 
   async function getPublicData() {
     try {
-      const response = await fetch(
-        "http://localhost:3000/posts?published=true",
-      );
+      const response = await fetch(`${url}/posts?published=true`);
       const data = await response.json();
       setPostTitles(data);
     } catch (err) {
@@ -56,10 +55,7 @@ export default function PostList() {
         published: formData.get("published"),
       }),
     };
-    const response = await fetch(
-      `http://localhost:3000/posts/${postId}`,
-      request,
-    );
+    const response = await fetch(`${url}/posts/${postId}`, request);
     const data = await response.json();
     getData();
   }
@@ -74,7 +70,7 @@ export default function PostList() {
         headers: myHeaders,
       };
       const response = await fetch(
-        `http://localhost:3000/posts/${formData.get("delete")}`,
+        `${url}/posts/${formData.get("delete")}`,
         request,
       );
       const data = await response.json();

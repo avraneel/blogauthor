@@ -1,14 +1,13 @@
 import Comment from "./Comment";
 import { useState, useEffect } from "react";
+import url from "../url";
 
 export function CommentSection({ postId, session }) {
   const [postComments, setPostComments] = useState([]);
   const [updateFlag, setUpdateFlag] = useState(false);
   useEffect(() => {
     async function getComments(postId) {
-      const response = await fetch(
-        `http://localhost:3000/comments?postId=${postId}`,
-      );
+      const response = await fetch(`${url}/comments?postId=${postId}`);
       const receivedComments = await response.json();
       setPostComments(receivedComments);
     }

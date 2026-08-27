@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useOutletContext, useParams } from "react-router";
 import { CommentSection } from "./CommentSection";
+import url from "../url";
 
 export default function Post() {
   const [session, setSession] = useOutletContext();
@@ -8,7 +9,7 @@ export default function Post() {
   const [post, setPost] = useState({});
   useEffect(() => {
     async function getPosts(postId) {
-      const response = await fetch(`http://localhost:3000/posts/${postId}`);
+      const response = await fetch(`${url}/posts/${postId}`);
       const data = await response.json();
       setPost(data);
     }

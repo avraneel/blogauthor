@@ -1,3 +1,5 @@
+import url from "../url";
+
 export default function Comment({
   id,
   authorName,
@@ -19,7 +21,7 @@ export default function Comment({
     const commentIdToDelete = formData.get("delete");
 
     const response = await fetch(
-      `http://localhost:3000/comments/${commentIdToDelete}`,
+      `${url}/comments/${commentIdToDelete}`,
       request,
     );
     if (response.ok) {
