@@ -18,6 +18,7 @@ export default function Post() {
   return (
     <article className="post">
       <h2>{post.title}</h2>
+      <a href={`/edit/${postId}`}>Edit</a>
       <p>{post.content}</p>
       <CommentSection postId={postId} session={session} />
     </article>
